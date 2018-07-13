@@ -1,0 +1,9 @@
+{
+  "name": "vagrant/company-group",
+  "description": "This is the company group subdomain",
+  "autoload": {
+    "psr-4": {
+      "Subdomains\\CompanyOne\\": ""
+    }
+  }
+}
