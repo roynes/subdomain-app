@@ -10,11 +10,16 @@ class RolesAndPermissionsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        foreach($this->getPermissions() as $permission) {
-            Gate::define($permission->name, function($user) use ($permission) {
-                return $user->hasRole($permission->roles);
-            });
+        try {
+            foreach($this->getPermissions() as $permission) {
+                Gate::define($permission->name, function($user) use ($permission) {
+                    return $user->hasRole($permission->roles);
+                });
+            }
+        } catch (\Exception $e) {
+            return;
         }
+
     }
 
     protected function getPermissions()
